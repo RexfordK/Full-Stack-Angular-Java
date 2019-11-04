@@ -1,0 +1,12 @@
+<div>
+    <label>Username</label>
+    <input for="username" id="username" type="text" name="username" [(ngModel)]="username" >
+    {{username}}
+</div>
+<div>
+    <label for="password">Password</label>
+    <input id="password" type="text" name="Password" [(ngModel)]="password">
+    {{password}}
+</div>
+
+<button type="submit" (click)="handleLogin()">Submit</button>
