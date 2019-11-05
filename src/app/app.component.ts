@@ -3,9 +3,10 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  //template: '<h1>{{title}}<h1>',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'todo';
-  name = "rexford"
+  message = 'Welcome to in28Minutes';
 }
