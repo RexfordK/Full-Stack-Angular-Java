@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-export class HelloWorldBean {
-  constructor(public message:string){ }
+export interface HelloWorldBean {
+  name: string,
+  message: string
 }
 
 @Injectable({
@@ -15,7 +16,8 @@ export class WelcomeDataService {
   ) { }
 
   executeHelloWorldBeanService() {
-    return this.http.get<HelloWorldBean>('http://localhost:8080/hello-world-bean');
+    let url = 'http://localhost:8080/hello-world-bean';
+    return this.http.get<HelloWorldBean>(url);
     //console.log("Execute Hello World Bean Service")
   }
   //http://localhost:8080/hello-world/path-variable/in28minutes

@@ -14,40 +14,45 @@ import { Component, OnInit } from '@angular/core';//'./app.component';
   styleUrls: ['./welcome.component.css']
 })
 
+
+
 //public class SpringBootFirstWebApplication implements SomeInterface{
 export class WelcomeComponent implements OnInit {
 
   message = 'Some Welcome Message'
-  welcomeMessageFromService:string
+  welcomeMessageFromService;
   name = ''
   //String message = "Some Welcome Message"
-  
+
   //public SpringBootFirstWebApplication() {	
 
   //ActivatedRoute
   constructor(
-    private route:ActivatedRoute,
-    private service:WelcomeDataService) { 
+    private route: ActivatedRoute,
+    private welcomeService: WelcomeDataService) {
 
   }
 
   // void init() {
-  ngOnInit(){
+  ngOnInit() {
     //COMPILATION ERROR this.message = 5
     //console.log(this.message)
     // console.log(this.route.snapshot.params['name'])
     this.name = this.route.snapshot.params['name'];
-    
+
   }
 
   getWelcomeMessage() {
-    //console.log(this.service.executeHelloWorldBeanService());
-    
-    this.service.executeHelloWorldBeanService().subscribe(
-      response => this.handleSuccessfulResponse(response),
-      error => this.handleErrorResponse(error)
-    );
-    
+    this.welcomeService.executeHelloWorldBeanService().subscribe((res) => {
+      this.welcomeMessageFromService = res;
+      console.log("response", res);
+    }, err => this.handleErrorResponse(err))
+
+    // this.service.executeHelloWorldBeanService().subscribe(
+    //   response => this.handleSuccessfulResponse(response),
+    //   error => this.handleErrorResponse(error)
+    // );
+
     //console.log('last line of getWelcomeMessage')
 
     //console.log("get welcome message");
@@ -55,29 +60,30 @@ export class WelcomeComponent implements OnInit {
 
   getWelcomeMessageWithParameter() {
     //console.log(this.service.executeHelloWorldBeanService());
-    
-    this.service.executeHelloWorldServiceWithPathVariable(this.name).subscribe(
-      response => this.handleSuccessfulResponse(response),
+
+    this.welcomeService.executeHelloWorldServiceWithPathVariable(this.name).subscribe(
+      response => {this.handleSuccessfulResponse(response)
+      console.log("response", response)},
       error => this.handleErrorResponse(error)
     );
-    
+
     //console.log('last line of getWelcomeMessage')
 
     //console.log("get welcome message");
   }
 
 
-  handleSuccessfulResponse(response){
+  handleSuccessfulResponse(response) {
     this.welcomeMessageFromService = response.message
     //console.log(response);
     //console.log(response.message);
   }
 
   handleErrorResponse(error) {
-    //console.log(error);
-    //console.log(error.error);
-    //console.log(error.error.message);
+    // console.log(error);
+    // console.log(error.error);
     this.welcomeMessageFromService = error.error.message
+    console.log(this.welcomeMessageFromService);
   }
 }
 
@@ -86,5 +92,5 @@ export class Class1 {
 }
 
 export class Class2 {
-  
+
 }

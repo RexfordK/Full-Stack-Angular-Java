@@ -14,6 +14,7 @@ import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { LogoutComponent } from './logout/logout.component';
 import { TodoComponent } from './todo/todo.component';
+import { HardcodedAuthenticationService } from './service/hardcoded-authentication.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { TodoComponent } from './todo/todo.component';
     HttpClientModule
   ],
   providers: [
-     {provide: HTTP_INTERCEPTORS, useClass: HttpIntercepterBasicAuthService, multi: true }
+     {provide: HTTP_INTERCEPTORS, useClass: HttpIntercepterBasicAuthService, multi: true },
+     HardcodedAuthenticationService
   ],
   bootstrap: [AppComponent]
 })

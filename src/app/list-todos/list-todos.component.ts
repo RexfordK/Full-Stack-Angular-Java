@@ -44,7 +44,13 @@ export class ListTodosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.refreshTodos();
+    this.todoService.retrieveAllTodos("in28minutes").subscribe(res => {
+      this.todos = res;
+      console.log("todos list from response", this.todos);
+    }, err => {
+      console.log("error:", err);
+    })
+    // this.refreshTodos();
   }
 
   refreshTodos(){

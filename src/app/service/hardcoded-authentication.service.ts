@@ -3,6 +3,10 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
+
+export class User{
+  constructor(public username: string){}
+}
 export class HardcodedAuthenticationService {
 
   constructor() { }
@@ -10,7 +14,8 @@ export class HardcodedAuthenticationService {
   authenticate(username, password) {
     //console.log('before ' + this.isUserLoggedIn());
     if(username==="fish" && password === 'dummy') {
-      sessionStorage.setItem('authenticaterUser', username);
+      let user = new User(username);
+      sessionStorage.setItem('authenticaterUser', JSON.stringify(user));
       console.log('after ' + this.isUserLoggedIn());
       return true;
     } else {
